@@ -29,7 +29,7 @@ const Search = ({ searchUsers, setAlert, clearUsers, showClear }) => {
         />
         <input
           type='submit'
-          className='btn btn-dark'
+          className='btn-fb'
           value='Search'
           style={{ marginLeft: '30px' }}
         />

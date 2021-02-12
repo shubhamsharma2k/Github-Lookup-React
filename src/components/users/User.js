@@ -2,7 +2,7 @@ import { Fragment, React, useEffect } from "react";
 import Spinner from "../layout/Spinner";
 import { Link } from "react-router-dom";
 import Repos from "../repos/Repos";
-const User = ({ getSingleUser, user, loading, match, repos,getRepos }) => {
+const User = ({ getSingleUser, user, loading, match, repos, getRepos }) => {
   useEffect(() => {
     getSingleUser(match.params.login);
     getRepos(match.params.login);
@@ -31,27 +31,29 @@ const User = ({ getSingleUser, user, loading, match, repos,getRepos }) => {
       <Link to="/" className="btn btn-light">
         Back to Search
       </Link>
-      Hireable:{" "}
-      {hireable ? (
-        <i className="fas fa-check text-success" />
-      ) : (
-        <i className="fas fa-times-circle text-danger" />
-      )}
-      <div className="card grid-2">
-        <div className="all-center">
-          <img
-            src={avatar_url}
-            className="round-img"
-            alt=""
-            style={{ width: "150px" }}
-          />
-          <h1>{name}</h1>
-          <p>Location: {location}</p>
+      <div className="grid-2" style={{ marginTop: "2rem" }}>
+        <div
+          className="snip1344"
+          style={({ width: "80%" }, { borderRadius: "10px" })}
+        >
+          <div>
+            <img
+              src={avatar_url}
+              className="background "
+              alt=""
+              style={{ width: "150px" }}
+            />
+            <img src={avatar_url} className="profile" alt="" />
+            <div className="mb-2">
+              <h1>{name}</h1>
+              <p className="my-1">Location: {location}</p>
+            </div>
+          </div>
         </div>
-        <div>
+        <div style={{ marginTop: "3px" }}>
           {bio && (
             <Fragment>
-              <h3>Bio</h3>
+              <h3 className="heading-primary">BIO: </h3>
               <p>{bio}</p>
             </Fragment>
           )}
@@ -59,17 +61,31 @@ const User = ({ getSingleUser, user, loading, match, repos,getRepos }) => {
             Visit Profile
           </a>
           <ul>
-            <li>{login && <Fragment>Username: {login}</Fragment>}</li>
-            <li>{company && <Fragment>Company: {company}</Fragment>}</li>
-            <li>{blog && <Fragment>Website: {blog}</Fragment>}</li>
+            <li className="heading-primary">
+              {login && <Fragment>Username: {login}</Fragment>}
+            </li>
+            <li className="heading-primary">
+              {company && <Fragment>Company: {company}</Fragment>}
+            </li>
+            <li className="heading-primary">
+              {blog && <Fragment>Website: {blog}</Fragment>}
+            </li>
+            <li className="heading-primary">
+              Hireable:
+              {hireable ? (
+                <i className="fas fa-check text-success" />
+              ) : (
+                <i className="fas fa-times-circle text-danger" />
+              )}
+            </li>
           </ul>
         </div>
       </div>
-      <div className="card text-center">
+      <div className="text-center my-1">
         <div className="badge badge-primary">Followers: {followers}</div>
         <div className="badge badge-success">Following: {following}</div>
         <div className="badge badge-light">Public Repos: {public_repos}</div>
-        <div className="badge badge-dark">Public Gists: {public_gists}</div>
+        <div className="badge badge-light">Public Gists: {public_gists}</div>
       </div>
       <Repos repos={repos} />
     </Fragment>
